@@ -7,7 +7,9 @@ import (
 	"os/exec"
 	"strings"
 
-	. "github.com/ibmjstart/cf-download"
+	"path/filepath"
+
+	. "github.com/whereswaldon/cf-download"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -85,6 +87,21 @@ var _ = Describe("CfDownload", func() {
 	})
 
 	Describe("test directoryContext parsing", func() {
+
+		It("should respect path notation of current operating system", func() {
+			args[0] = "download"
+			args[1] = "app_name"
+			args[2] = "app/src/node"
+			args[3] = "--verbose"
+			currentDirectory, _ := os.Getwd()
+			rootWD, _ := GetDirectoryContext(currentDirectory, args)
+
+			correctPath := filepath.FromSlash(currentDirectory)
+			fmt.Println(rootWD)
+			fmt.Println(correctPath)
+			slashesCorrect := strings.HasPrefix(rootWD, correctPath)
+			Expect(slashesCorrect).To(BeTrue())
+		})
 
 		It("Should return correct strings", func() {
 			args[0] = "download"
