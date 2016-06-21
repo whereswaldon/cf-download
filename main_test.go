@@ -5,9 +5,10 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 
-	. "github.com/ibmjstart/cf-download"
+	. "github.com/whereswaldon/cf-download"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -94,10 +95,10 @@ var _ = Describe("CfDownload", func() {
 			currentDirectory, _ := os.Getwd()
 			rootWD, startingPath := GetDirectoryContext(currentDirectory, args)
 
-			correctSuffix := strings.HasSuffix(rootWD, "/cf-download/app-download/app/src/node/")
+			correctSuffix := strings.HasSuffix(rootWD, filepath.FromSlash("/cf-download/app-download/app/src/node/"))
 
 			Expect(correctSuffix).To(BeTrue())
-			Expect(startingPath).To(Equal("/app/src/node/"))
+			Expect(startingPath).To(Equal(filepath.FromSlash("/app/src/node/")))
 		})
 
 		It("should still return /app/src/node/ for startingPath (INPUT has leading and trailing slash)", func() {
@@ -108,10 +109,10 @@ var _ = Describe("CfDownload", func() {
 			currentDirectory, _ := os.Getwd()
 			rootWD, startingPath := GetDirectoryContext(currentDirectory, args)
 
-			correctSuffix := strings.HasSuffix(rootWD, "/cf-download/app-download/app/src/node/")
+			correctSuffix := strings.HasSuffix(rootWD, filepath.FromSlash("/cf-download/app-download/app/src/node/"))
 
 			Expect(correctSuffix).To(BeTrue())
-			Expect(startingPath).To(Equal("/app/src/node/"))
+			Expect(startingPath).To(Equal(filepath.FromSlash("/app/src/node/")))
 		})
 
 		It("should still return /app/src/node/ for startingPath (INPUT only has trailing slash)", func() {
@@ -122,10 +123,10 @@ var _ = Describe("CfDownload", func() {
 			currentDirectory, _ := os.Getwd()
 			rootWD, startingPath := GetDirectoryContext(currentDirectory, args)
 
-			correctSuffix := strings.HasSuffix(rootWD, "/cf-download/app-download/app/src/node/")
+			correctSuffix := strings.HasSuffix(rootWD, filepath.FromSlash("/cf-download/app-download/app/src/node/"))
 
 			Expect(correctSuffix).To(BeTrue())
-			Expect(startingPath).To(Equal("/app/src/node/"))
+			Expect(startingPath).To(Equal(filepath.FromSlash("/app/src/node/")))
 		})
 
 		It("should still return /app/src/node/ for startingPath (INPUT only has leading slash)", func() {
@@ -136,10 +137,10 @@ var _ = Describe("CfDownload", func() {
 			currentDirectory, _ := os.Getwd()
 			rootWD, startingPath := GetDirectoryContext(currentDirectory, args)
 
-			correctSuffix := strings.HasSuffix(rootWD, "/cf-download/app-download/app/src/node/")
+			correctSuffix := strings.HasSuffix(rootWD, filepath.FromSlash("/cf-download/app-download/app/src/node/"))
 
 			Expect(correctSuffix).To(BeTrue())
-			Expect(startingPath).To(Equal("/app/src/node/"))
+			Expect(startingPath).To(Equal(filepath.FromSlash("/app/src/node/")))
 		})
 
 	})
